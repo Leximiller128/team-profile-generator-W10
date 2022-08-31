@@ -1,11 +1,11 @@
-import Engineer from "./lib/Engineer.cjs";
-import Intern from "./lib/Intern.cjs";
-import Manager from "./lib/Manager.cjs";
-
+import Engineer from "./lib/Engineer.js";
+import Intern from "./lib/Intern.js";
+import Manager from "./lib/Manager.js";
+import GenerateTeam from "../template.js";
 import inquirer from "inquirer";
 // const path = require("path");
 // const fs = require("fs");
-const generateTeam = require("./template.js");
+// const generateTeam = require("./template.js");
 
 function runApp() {
   function createTeam() {

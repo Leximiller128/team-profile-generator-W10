@@ -1,4 +1,4 @@
-const Employee = require("./lib/Employee.cjs");
+const Employee = require("./lib/Employee.js");
 
 const generateTeam = (team) => {
   // Generate Manager
