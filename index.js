@@ -34,6 +34,9 @@ function runApp() {
           case "Intern":
             addIntern();
             break;
+
+          default:
+            htmlBuilder();
         }
       });
   }
