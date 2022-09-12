@@ -8,6 +8,8 @@ const fs = require("fs");
 const generateTeam = require("./template.js");
 const OUTPUT_DIR = path.resolve(__dirname, "dist");
 
+teamArray = [];
+
 function runApp() {
   function createTeam() {
     inquirer
@@ -150,12 +152,10 @@ function runApp() {
       });
   }
 
-  function htmlBuilder() {
-    if (!fs.existsSync(OUTPUT_DIR)) {
-      fs.mkdirSync(OUTPUT_DIR);
-      console.log("Team created!");
-    }
-    fs.writeFileSync(outputFile, generateTeam(teamArray), "utf-8");
+  function buildHTML() {
+    fs.writeFileSync(distPath, teamHTML(teamArray), (err) =>
+      err ? console.log(err) : console.log("Team is complete.")
+    );
   }
 
   createTeam();
