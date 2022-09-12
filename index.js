@@ -3,9 +3,10 @@ import Intern from "./lib/Intern.js";
 import Manager from "./lib/Manager.js";
 import GenerateTeam from "../template.js";
 import inquirer from "inquirer";
-// const path = require("path");
-// const fs = require("fs");
-// const generateTeam = require("./template.js");
+const path = require("path");
+const fs = require("fs");
+const generateTeam = require("./template.js");
+const OUTPUT_DIR = path.resolve(__dirname, "dist");
 
 function runApp() {
   function createTeam() {
@@ -150,9 +151,11 @@ function runApp() {
   }
 
   function htmlBuilder() {
-    console.log("Team created!");
-
-    fs.writeFileSync(outputPath, generateTeam(teamArray), "utf8");
+    if (!fs.existsSync(OUTPUT_DIR)) {
+      fs.mkdirSync(OUTPUT_DIR);
+      console.log("Team created!");
+    }
+    fs.writeFileSync(outputFile, generateTeam(teamArray), "utf-8");
   }
 
   createTeam();
