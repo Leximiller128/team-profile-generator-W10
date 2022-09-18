@@ -1,14 +1,18 @@
-import Engineer from "./lib/Engineer.js";
-import Intern from "./lib/Intern.js";
-import Manager from "./lib/Manager.js";
-import GenerateTeam from "../template.js";
-import inquirer from "inquirer";
+// import Engineer from "./lib/Engineer.js";
+const Engineer = require("./lib/Engineer.js");
+// import Intern from "./lib/Intern.js";
+const Intern = require("./lib/Intern.js");
+// import Manager from "./lib/Manager.js";
+const Manager = require("./lib/Manager.js");
+// import inquirer from "inquirer";
+const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
 const generateTeam = require("./template.js");
 const OUTPUT_DIR = path.resolve(__dirname, "dist");
+const dirpath = path.join(OUTPUT_DIR, "./outline.html");
 
-teamArray = [];
+const teamArray = [];
 
 function runApp() {
   function createTeam() {
@@ -27,7 +31,7 @@ function runApp() {
         },
       ])
       .then(function (userInput) {
-        switch (userInputer.addEmployee) {
+        switch (userInput.addEmployee) {
           case "Manager":
             addManager();
             break;
@@ -95,7 +99,7 @@ function runApp() {
         },
         {
           type: "input",
-          name: "managerEmail",
+          name: "engineerEmail",
           message: "What is the engineer's email address?",
         },
         {
@@ -126,12 +130,12 @@ function runApp() {
         },
         {
           type: "input",
-          name: "managerId",
-          message: "What is the manager's ID number?",
+          name: "internId",
+          message: "What is the intern's ID number?",
         },
         {
           type: "input",
-          name: "managerEmail",
+          name: "internEmail",
           message: "What is the intern's email address?",
         },
         {
@@ -152,8 +156,9 @@ function runApp() {
       });
   }
 
-  function buildHTML() {
-    fs.writeFileSync(distPath, teamHTML(teamArray), (err) =>
+  function htmlBuilder() {
+    console.log(teamArray);
+    fs.writeFileSync(dirpath, generateTeam(teamArray), (err) =>
       err ? console.log(err) : console.log("Team is complete.")
     );
   }
